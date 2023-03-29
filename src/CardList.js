@@ -22,4 +22,3 @@ const CardList = ({robots}) => {
 }
 
 export default CardList;
-//this is for test of github
