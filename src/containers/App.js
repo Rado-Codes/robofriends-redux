@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import SearchBox from '../components/SearchBox';
 import CardList from '../components/CardList';
 import Scroll from '../components/Scroll';
+import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css'
 
 
+//Create component
 class App extends Component {
     constructor() {
         super()
@@ -13,11 +15,11 @@ class App extends Component {
             searchField: ''
         }
     }
-
+    //Create function for event of SearchField Component
     onSearchField = (event) => {
         this.setState({searchField: event.target.value});
     }
-
+    //Connect Database with Appand update when DOM tree is loaded
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response=> response.json())
@@ -25,20 +27,22 @@ class App extends Component {
     }
 
 
-
+    //render component
     render() {
         const { robots, searchField } = this.state;
         const filteredRobots = robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchField.toLowerCase())
         })
-        return !robots.length ? //ternary operator
+        return !robots.length ? //ternary operator if no dta from database then Loading
         <h1>Loading</h1> :
         (
             <div className='tc'>
                 <h1 className='f1'>RoboFriends</h1>
                 <SearchBox searchChange={this.onSearchField}/>
                 <Scroll>
-                    <CardList robots={filteredRobots}/>
+                    <ErrorBoundary>
+                        <CardList robots={filteredRobots}/>
+                    </ErrorBoundary>
                 </Scroll>
             </div>
         );
