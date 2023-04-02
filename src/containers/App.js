@@ -19,7 +19,7 @@ class App extends Component {
     onSearchField = (event) => {
         this.setState({searchField: event.target.value});
     }
-    //Connect Database with Appand update when DOM tree is loaded
+    //Connect Database with App and update when DOM tree is loaded
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response=> response.json())
@@ -30,9 +30,7 @@ class App extends Component {
     //render component
     render() {
         const { robots, searchField } = this.state;
-        const filteredRobots = robots.filter(robot => {
-            return robot.name.toLowerCase().includes(searchField.toLowerCase())
-        })
+        const filteredRobots = robots.filter(robot => robot.name.toLowerCase().includes(searchField.toLowerCase()));
         return !robots.length ? //ternary operator if no dta from database then Loading
         <h1>Loading</h1> :
         (
