@@ -7,7 +7,7 @@ import './App.css'
 
 
 //Create component
-function App() {
+function App({ store }) {
     const [robots, setRobots] = useState([]);
     const [searchField, setSearchField] = useState('');
     
@@ -17,6 +17,7 @@ function App() {
     };
 
     useEffect(() => {
+        // console.log(store.getState());
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(users => setRobots(users));
