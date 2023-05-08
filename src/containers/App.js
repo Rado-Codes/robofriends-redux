@@ -20,7 +20,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
-        onRequestRobots: () => dispatch(requestRobots()) //this is the same as requestRobots())
+        onRequestRobots: () => dispatch(requestRobots()) //the same as dispatch(requestRobots())
     }
 }
 
@@ -40,11 +40,11 @@ function App( props ) {
         // fetch('https://jsonplaceholder.typicode.com/users')
         // .then(response => response.json())
         // .then(users => setRobots(users));
+        
         props.onRequestRobots();
     },[]); //when we wanna run the useEffect  in the second argument
 
     const filteredRobots = robots.filter(robot => robot.name.toLowerCase().includes(searchField.toLowerCase()));
-
     //render component
     return isPending ?
         <h1>Loading</h1> :

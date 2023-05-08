@@ -14,10 +14,10 @@ import './index.css';
 
 const logger = createLogger();
 
-const rootReducers = combineReducers({ requestRobots, searchRobots });
+const rootReducer = combineReducers({ requestRobots, searchRobots });
 
 const store =
-	 createStore(rootReducers, applyMiddleware(thunkMiddleware, logger));
+	 createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
